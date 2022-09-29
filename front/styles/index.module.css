@@ -72,6 +72,7 @@
 .googlebutton {
   width: fit-content;
   font-size: 0;
+  margin: auto;
 }
 .googlebutton:hover .shadow,
 .googlebutton .noshadow {

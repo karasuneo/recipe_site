@@ -52,33 +52,25 @@ export default function Component() {
 
         <div className={styles.footer}>
           <div className={styles.googlebutton}>
-            <I
-              src="/google_login_icon/btn_google_signin_light_normal_web.png"
-              className={styles.shadow}
-              width={200}
-              height={50}
-              alt="googleでサインイン(normal)"
-            />
-            <Image
-              src="/google_login_icon/btn_google_signin_light_focus_web.png"
-              className={styles.noshadow}
-              width={200}
-              height={50}
-              alt="googleでサインイン(hover)"
-            />
-            <style jsx global>{`
-              .avatar {
-                border-radius: 50%;
-              }
-            `}</style>
+            <div className={styles.shadow}>
+              <Image
+                src="/google_login_icon/btn_google_signin_light_normal_web.png"
+                width={200}
+                height={50}
+                alt="googleでサインイン(normal)"
+              />
+            </div>
+            <div className={styles.noshadow}>
+              <Image
+                src="/google_login_icon/btn_google_signin_light_focus_web.png"
+                className={styles.noshadow}
+                onClick={() => signIn()}
+                width={200}
+                height={50}
+                alt="googleでサインイン(hover)"
+              />
+            </div>
           </div>
-
-          <p>
-            <a href="#">Create an account</a>
-          </p>
-          <p>
-            <a href="#">Forgot password?</a>
-          </p>
         </div>
       </div>
 

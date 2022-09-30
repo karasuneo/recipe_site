@@ -20,36 +20,6 @@ export default function Component() {
     <>
       <div className={styles.wrapper}>
         <h1>Sign In</h1>
-
-        <form>
-          <div className={styles.item}>
-            <label for="email"></label>
-            <input
-              type="email"
-              name="email"
-              required="required"
-              placeholder="Email Address"
-            ></input>
-          </div>
-          <div className={styles.item}>
-            <label for="password"></label>
-            <input
-              type="password"
-              name="password"
-              required="required"
-              placeholder="Password"
-            ></input>
-          </div>
-          <div className={styles.panel}>
-            <input
-              type="submit"
-              className={styles.button}
-              title="Sign In"
-              value="Sign In"
-            ></input>
-          </div>
-        </form>
-
         <div className={styles.footer}>
           <div className={styles.googlebutton}>
             <div className={styles.shadow}>
@@ -73,8 +43,6 @@ export default function Component() {
           </div>
         </div>
       </div>
-
-      <button onClick={() => signIn()}>Sign in</button>
     </>
   );
 }

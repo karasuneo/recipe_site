@@ -12,22 +12,11 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
+
   callbacks: {
     async session({ session, user, token }) {
       console.log(user);
       return session;
-    },
-  },
-  events: {
-    createUser: async ({ user }) => {
-      await prisma.user.update({
-        where: {
-          id: user.id,
-        },
-        data: {
-          mobile: "090-1111-1111",
-        },
-      });
     },
   },
   secret: "secret",

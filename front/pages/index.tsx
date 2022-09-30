@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import styles from "../styles/index.module.css";
 
-export default function Component() {
+export default function SessionComponent() {
   const { data: session } = useSession();
   if (session) {
     console.log(session);

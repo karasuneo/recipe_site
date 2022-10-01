@@ -34,7 +34,7 @@ export default function Component() {
               <Image
                 src="/google_login_icon/btn_google_signin_light_focus_web.png"
                 className={styles.noshadow}
-                onClick={() => signIn()}
+                onClick={() => signIn('google')}
                 width={200}
                 height={50}
                 alt="googleでサインイン(hover)"

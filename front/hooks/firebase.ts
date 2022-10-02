@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import { getAuth, onAuthStateChanged, User, GoogleAuthProvider } from "firebase/auth";
 import { useState } from "react";
 
 const firebaseConfig = {

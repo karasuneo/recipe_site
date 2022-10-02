@@ -1,4 +1,11 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  signInWithRedirect,
+  GoogleAuthProvider,
+  getRedirectResult,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -27,7 +34,7 @@ export default function Signup() {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-
+  const provider = new GoogleAuthProvider();
   const auth = useAuth();
   const currentUser = useUser();
   const [isProcessingSignup, setIsProcessingSignup] = useState(false);
@@ -41,6 +48,9 @@ export default function Signup() {
       console.error(e);
     }
   };
+  const clickLogin = function () {
+    signInWithRedirect(auth, provider);
+  };
   const onSubmit: SubmitHandler<Inputs> = ({ email, password }) => {
     signin(email, password);
   };
@@ -48,6 +58,57 @@ export default function Signup() {
   useEffect(() => {
     if (currentUser) router.push("/");
   }, [currentUser, router]);
+
+  useEffect(() => {
+    getRedirectResult(auth)
+      .then((result) => {
+        console.log(result);
+        if (result !== null) {
+          const credential = GoogleAuthProvider.credentialFromResult(result);
+          const token = credential.accessToken;
+          console.log(token);
+          // The signed-in user info.
+          const user = result.user;
+          console.log(user);
+          console.log(user.uid);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        console.error(errorCode);
+        console.error(errorMessage);
+        console.error(email);
+        // The AuthCredential type that was used.
+        //const credential = GoogleAuthProvider.credentialFromError(error);
+      });
+  });
+
+  const checkLogint = function () {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        const email = user.email;
+        console.log(uid);
+        console.log(email);
+      } else {
+        console.log("signed out");
+      }
+    });
+  };
+  checkLogint();
+  const clickLogout = async function () {
+    signOut(auth)
+      .then(() => {
+        console.log("ログアウトしました");
+      })
+      .catch((error) => {
+        console.log(`ログアウト時にエラーが発生しました (${error})`);
+      });
+  };
 
   return (
     <Flex>
@@ -121,6 +182,20 @@ export default function Signup() {
                 </Button>
               </Flex>
             </form>
+            <Button
+              type="submit"
+              color="white"
+              background="gray.800"
+              size="lg"
+              paddingX="80px"
+              m="0 auto"
+              onClick={() => clickLogin()}
+              _hover={{
+                background: "gray.700",
+              }}
+            >
+              Googleでサインイン
+            </Button>
           </Box>
         </Box>
       </Box>

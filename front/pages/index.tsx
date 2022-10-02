@@ -22,6 +22,7 @@ const Home: NextPage = () => {
   const router = useRouter();
 
   return (
+
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
@@ -83,6 +84,7 @@ const Home: NextPage = () => {
         </a>
       </footer>
     </div>
+
   );
 };
 

@@ -18,13 +18,8 @@ import {
 import Link from "next/link";
 
 const Home: NextPage = () => {
-  // const currentUser = useUser();
-  // const router = useRouter();
-  // useEffect(() => {
-  //   if (currentUser) router.push("/");
-  //   else if(!currentUser) router.push("/signup");
-      
-  // }, [currentUser, router]);
+  const currentUser = useUser();
+  const router = useRouter();
 
   return (
     <div className={styles.container}>

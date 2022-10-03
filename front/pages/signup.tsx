@@ -52,9 +52,9 @@ export default function Signup() {
       alert("パスワードが一致しません");
     }
   };
-  useEffect(() => {
-    if (currentUser) router.push("/");
-  }, [currentUser, router]);
+//   useEffect(() => {
+//     if (currentUser) router.push("/");
+//   }, [currentUser, router]);
 
   return (
     <Flex>

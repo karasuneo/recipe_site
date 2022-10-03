@@ -54,6 +54,9 @@ export default function Signup() {
   const onSubmit: SubmitHandler<Inputs> = ({ email, password }) => {
     signin(email, password);
   };
+  const handleClose = async () => {
+    await router.push("/");
+  };
 
   useEffect(() => {
     if (currentUser) router.push("/");
@@ -63,7 +66,8 @@ export default function Signup() {
     getRedirectResult(auth)
       .then((result) => {
         console.log(result);
-        if (result !== null) {
+        if (result == null) {
+
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential.accessToken;
           console.log(token);
@@ -71,6 +75,7 @@ export default function Signup() {
           const user = result.user;
           console.log(user);
           console.log(user.uid);
+          router.push("/");
         }
       })
       .catch((error) => {

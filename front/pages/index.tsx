@@ -1,17 +1,22 @@
-import type { NextPage } from "next";
+import { GoogleAuthProvider, getRedirectResult } from "firebase/auth";
 import { useRouter } from "next/router";
+import { useEffect,  } from "react";
+import Image from "next/image";
+import { useAuth, useUser } from "../hooks/firebase";
+import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { useUser } from "../hooks/firebase";
-import Image from "next/image"
-
 
 const Home: NextPage = () => {
   const currentUser = useUser();
+  const auth = useAuth();
   const router = useRouter();
+  // useEffect(() => {
+  //   if (!currentUser) router.push("/signin");
+  // }, [currentUser, router]);
+
 
   return (
-
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
@@ -73,7 +78,6 @@ const Home: NextPage = () => {
         </a>
       </footer>
     </div>
-
   );
 };
 

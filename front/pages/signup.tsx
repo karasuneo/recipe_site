@@ -53,7 +53,7 @@ export default function Signup() {
     }
   };
   useEffect(() => {
-    if (currentUser) router.push("/");
+    if (currentUser) router.push("/home");
   }, [currentUser, router]);
 
   return (

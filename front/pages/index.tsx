@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-
 import { useEffect } from "react";
 import { useUser } from "../hooks/firebase";
 import {
@@ -15,11 +14,13 @@ import {
   Input,
   Text,
 } from "@chakra-ui/react";
-import Link from "next/link";
 
 const Home: NextPage = () => {
   const currentUser = useUser();
   const router = useRouter();
+  useEffect(() => {
+    if (currentUser) router.push("/");
+  }, [currentUser, router]);
 
   return (
 

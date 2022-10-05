@@ -1,15 +1,14 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAuth, useUser } from "../hooks/firebase";
+import { useAuth } from "../hooks/firebase";
 import {
   Box,
   Button,
   Flex,
   FormLabel,
   Heading,
-  Image,
   Input,
   Text,
 } from "@chakra-ui/react";
@@ -29,7 +28,6 @@ export default function Signup() {
   } = useForm<Inputs>();
 
   const auth = useAuth();
-  const currentUser = useUser();
   const [isProcessingSignup, setIsProcessingSignup] = useState(false);
   const router = useRouter();
   const signup = async (email: string, password: string) => {
@@ -37,6 +35,7 @@ export default function Signup() {
       setIsProcessingSignup(true);
       await createUserWithEmailAndPassword(auth, email, password);
       setIsProcessingSignup(false);
+      router.push("/home");
     } catch (e) {
       console.error(e);
     }
@@ -52,10 +51,7 @@ export default function Signup() {
       alert("パスワードが一致しません");
     }
   };
-  useEffect(() => {
-    if (currentUser) router.push("/home");
-  }, [currentUser, router]);
-
+  
   return (
     <Flex>
       <Box

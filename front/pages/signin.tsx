@@ -32,21 +32,17 @@ export default function Signup() {
   const signin = async (email: string, password: string) => {
     try {
       setIsProcessingSignin(true);
-      console.log(typeof auth);
       await signInWithEmailAndPassword(auth, email, password);
       setIsProcessingSignin(false);
       router.push("/home");
     } catch (e) {
       console.error(e);
+      setIsProcessingSignin(false);
     }
   };
   const onSubmit: SubmitHandler<Inputs> = ({ email, password }) => {
     signin(email, password);
   };
-
-  //   useEffect(() => {
-  //     if (currentUser) router.push("/home");
-  //   }, [currentUser, router]);
 
   return (
     <Flex>

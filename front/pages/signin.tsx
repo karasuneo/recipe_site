@@ -1,15 +1,14 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAuth, useUser } from "../hooks/firebase";
+import { useAuth } from "../hooks/firebase";
 import {
   Box,
   Button,
   Flex,
   FormLabel,
   Heading,
-  Image,
   Input,
   Text,
 } from "@chakra-ui/react";
@@ -18,7 +17,6 @@ import Link from "next/link";
 type Inputs = {
   email: string;
   password: string;
-  confirmationPassword: string;
 };
 
 export default function Signup() {
@@ -29,14 +27,15 @@ export default function Signup() {
   } = useForm<Inputs>();
 
   const auth = useAuth();
-  const currentUser = useUser();
-  const [isProcessingSignup, setIsProcessingSignin] = useState(false);
+  const [isProcessingSignin, setIsProcessingSignin] = useState(false);
   const router = useRouter();
   const signin = async (email: string, password: string) => {
     try {
       setIsProcessingSignin(true);
+      console.log(typeof auth);
       await signInWithEmailAndPassword(auth, email, password);
       setIsProcessingSignin(false);
+      router.push("/home");
     } catch (e) {
       console.error(e);
     }
@@ -45,9 +44,9 @@ export default function Signup() {
     signin(email, password);
   };
 
-  useEffect(() => {
-    if (currentUser) router.push("/home");
-  }, [currentUser, router]);
+  //   useEffect(() => {
+  //     if (currentUser) router.push("/home");
+  //   }, [currentUser, router]);
 
   return (
     <Flex>
@@ -95,9 +94,10 @@ export default function Signup() {
               )}
               <Input
                 type="password"
-                {...register("confirmationPassword", { required: true })}
                 size="lg"
                 mb="8"
+                placeholder="password"
+                {...register("password", { required: true })}
               />
 
               <Flex flexDirection="column">
@@ -112,7 +112,7 @@ export default function Signup() {
                   size="lg"
                   paddingX="80px"
                   m="0 auto"
-                  isLoading={isProcessingSignup}
+                  isLoading={isProcessingSignin}
                   _hover={{
                     background: "gray.700",
                   }}

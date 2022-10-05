@@ -101,7 +101,7 @@ export default function Signup() {
                 type="password"
                 size="lg"
                 mb="8"
-                placeholder="example@test.com"
+                placeholder="password"
                 {...register("password", { required: true })}
               />
 

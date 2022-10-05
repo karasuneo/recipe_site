@@ -1,9 +1,6 @@
 import { createUserWithEmailAndPassword, signOut } from "firebase/auth";
 import { useRouter } from "next/router";
-// import { useEffect, useState } from "react";
-// import { SubmitHandler, useForm } from "react-hook-form";
 import { useAuth, useUser } from "../hooks/firebase";
-// import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Image from "next/image";

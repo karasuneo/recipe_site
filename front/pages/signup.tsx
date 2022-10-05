@@ -122,7 +122,7 @@ export default function Signup() {
               <Flex flexDirection="column">
                 <Text mb="8" textAlign="center">
                   アカウントをお持ちの方は
-                  <Link href="/signin">こちら</Link>
+                  <Link href="/">こちら</Link>
                 </Text>
                 <Button
                   type="submit"

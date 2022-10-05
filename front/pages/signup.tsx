@@ -38,6 +38,7 @@ export default function Signup() {
       router.push("/home");
     } catch (e) {
       console.error(e);
+      setIsProcessingSignup(false);
     }
   };
   const onSubmit: SubmitHandler<Inputs> = ({

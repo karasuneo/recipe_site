@@ -18,7 +18,6 @@ import Link from "next/link";
 type Inputs = {
   email: string;
   password: string;
-  confirmationPassword: string;
 };
 
 export default function Signup() {
@@ -30,14 +29,19 @@ export default function Signup() {
 
   const auth = useAuth();
   const currentUser = useUser();
-  const [isProcessingSignup, setIsProcessingSignin] = useState(false);
+  const [isProcessingSignin, setIsProcessingSignin] = useState(false);
   const router = useRouter();
   const signin = async (email: string, password: string) => {
     try {
+      
       setIsProcessingSignin(true);
+      console.log(typeof auth)
       await signInWithEmailAndPassword(auth, email, password);
+      console.log("sssss")
       setIsProcessingSignin(false);
+      //console.log("sssss")
     } catch (e) {
+      //console.log("sssss")
       console.error(e);
     }
   };
@@ -95,7 +99,6 @@ export default function Signup() {
               )}
               <Input
                 type="password"
-                {...register("confirmationPassword", { required: true })}
                 size="lg"
                 mb="8"
               />
@@ -112,7 +115,7 @@ export default function Signup() {
                   size="lg"
                   paddingX="80px"
                   m="0 auto"
-                  isLoading={isProcessingSignup}
+                  isLoading={isProcessingSignin}
                   _hover={{
                     background: "gray.700",
                   }}

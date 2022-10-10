@@ -31,8 +31,7 @@ export const AuthProvider = ({ children }: AuthProps) => {
   const auth = useAuth();
   const [user, setUser] = useState<UserType>(null);
   const isAvailableForViewing =
-    router.pathname === "/signin" ||
-    router.pathname === "/signup";
+    router.pathname === "/signin" || router.pathname === "/signup";
   const value = {
     user,
   };
@@ -49,11 +48,3 @@ export const AuthProvider = ({ children }: AuthProps) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
-
-// export function useUser() {
-//       const [user, setUser] = useState<User>();
-//       onAuthStateChanged(auth, (user) => {
-//         if (user) setUser(user);
-//       });
-//       return user;
-//     }

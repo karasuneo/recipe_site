@@ -35,7 +35,7 @@ export default function Signup() {
       setIsProcessingSignup(true);
       await createUserWithEmailAndPassword(auth, email, password);
       setIsProcessingSignup(false);
-      router.push("/home");
+      router.push("/private");
     } catch (e) {
       console.error(e);
       setIsProcessingSignup(false);
@@ -119,7 +119,7 @@ export default function Signup() {
               <Flex flexDirection="column">
                 <Text mb="8" textAlign="center">
                   アカウントをお持ちの方は
-                  <Link href="/">こちら</Link>
+                  <Link href="/signin">こちら</Link>
                 </Text>
                 <Button
                   type="submit"

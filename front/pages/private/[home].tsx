@@ -1,10 +1,10 @@
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
-import { useAuth } from "../../../hooks/firebase";
+import { useAuth } from "../../hooks/firebase";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import Image from "next/image";
-import { useAuthContext } from "../../../hooks/context/AuthContext";
+import { useAuthContext } from "../../hooks/context/AuthContext";
 
 export default function Home() {
   const auth = useAuth();

@@ -34,7 +34,8 @@ export default function Signup() {
       setIsProcessingSignin(true);
       await signInWithEmailAndPassword(auth, email, password);
       setIsProcessingSignin(false);
-      router.push("/home");
+      //console.log(user.u)
+      router.push("/private");
     } catch (e) {
       console.error(e);
       setIsProcessingSignin(false);

@@ -1,6 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, User, GoogleAuthProvider } from "firebase/auth";
-import { useState } from "react";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -9,14 +8,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+
 export function useAuth() {
   return auth;
 }
 
-export function useUser() {
-  const [user, setUser] = useState<User>();
-  onAuthStateChanged(auth, (user) => {
-    if (user) setUser(user);
-  });
-  return user;
-}
+

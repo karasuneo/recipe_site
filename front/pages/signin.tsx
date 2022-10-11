@@ -7,16 +7,15 @@ import {
   signOut,
 } from "firebase/auth";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAuth, useUser } from "../hooks/firebase";
+import { useAuth } from "../hooks/firebase";
 import {
   Box,
   Button,
   Flex,
   FormLabel,
   Heading,
-  Image,
   Input,
   Text,
 } from "@chakra-ui/react";
@@ -25,7 +24,6 @@ import Link from "next/link";
 type Inputs = {
   email: string;
   password: string;
-  confirmationPassword: string;
 };
 
 export default function Signup() {
@@ -36,16 +34,17 @@ export default function Signup() {
   } = useForm<Inputs>();
   const provider = new GoogleAuthProvider();
   const auth = useAuth();
-  const currentUser = useUser();
-  const [isProcessingSignup, setIsProcessingSignup] = useState(false);
+  const [isProcessingSignin, setIsProcessingSignin] = useState(false);
   const router = useRouter();
   const signin = async (email: string, password: string) => {
     try {
-      setIsProcessingSignup(true);
+      setIsProcessingSignin(true);
       await signInWithEmailAndPassword(auth, email, password);
-      setIsProcessingSignup(false);
+      setIsProcessingSignin(false);
+      router.push("/private/" + email);
     } catch (e) {
       console.error(e);
+      setIsProcessingSignin(false);
     }
   };
   const clickLogin = function () {
@@ -54,66 +53,7 @@ export default function Signup() {
   const onSubmit: SubmitHandler<Inputs> = ({ email, password }) => {
     signin(email, password);
   };
-  const handleClose = async () => {
-    await router.push("/");
-  };
 
-  useEffect(() => {
-    if (currentUser) router.push("/");
-  }, [currentUser, router]);
-
-  useEffect(() => {
-    getRedirectResult(auth)
-      .then((result) => {
-        console.log(result);
-        if (result == null) {
-
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential.accessToken;
-          console.log(token);
-          // The signed-in user info.
-          const user = result.user;
-          console.log(user);
-          console.log(user.uid);
-          router.push("/");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.email;
-        console.error(errorCode);
-        console.error(errorMessage);
-        console.error(email);
-        // The AuthCredential type that was used.
-        //const credential = GoogleAuthProvider.credentialFromError(error);
-      });
-  });
-
-  const checkLogint = function () {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.uid;
-        const email = user.email;
-        console.log(uid);
-        console.log(email);
-      } else {
-        console.log("signed out");
-      }
-    });
-  };
-  checkLogint();
-  const clickLogout = async function () {
-    signOut(auth)
-      .then(() => {
-        console.log("ログアウトしました");
-      })
-      .catch((error) => {
-        console.log(`ログアウト時にエラーが発生しました (${error})`);
-      });
-  };
 
   return (
     <Flex>
@@ -161,9 +101,10 @@ export default function Signup() {
               )}
               <Input
                 type="password"
-                {...register("confirmationPassword", { required: true })}
                 size="lg"
                 mb="8"
+                placeholder="password"
+                {...register("password", { required: true })}
               />
 
               <Flex flexDirection="column">
@@ -178,7 +119,7 @@ export default function Signup() {
                   size="lg"
                   paddingX="80px"
                   m="0 auto"
-                  isLoading={isProcessingSignup}
+                  isLoading={isProcessingSignin}
                   _hover={{
                     background: "gray.700",
                   }}

@@ -1,23 +1,17 @@
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useAuth } from "../../hooks/firebase";
-import Image from "next/image";
 import { useAuthContext } from "../../hooks/context/AuthContext";
 import {
   Box,
   Button,
   Flex,
-  FormLabel,
   Heading,
   Input,
-  Text,
   IconButton,
-  Icon,
   Spacer,
   InputGroup,
   InputRightAddon,
-  InputLeftAddon,
-  InputRightElement,
 } from "@chakra-ui/react";
 import {
   ViewIcon,

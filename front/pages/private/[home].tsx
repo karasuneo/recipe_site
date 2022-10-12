@@ -1,7 +1,6 @@
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useAuth } from "../../hooks/firebase";
-import { useAuthContext } from "../../hooks/context/AuthContext";
 import {
   Box,
   Button,
@@ -25,14 +24,18 @@ import { Skeleton } from "@chakra-ui/skeleton";
 
 export default function Home() {
   const auth = useAuth();
-  const currentUser = useAuthContext();
+  const currentpathname = location.pathname;
   const router = useRouter();
 
   const handleSignout = async () => {
     await signOut(auth);
     await router.push("/signin");
   };
+  const handleFavorite = async () => {
+    await router.push("/signin");
+  };
   const handleRedirect = async () => {
+    console.log(currentpathname + "");
     router.reload();
   };
 
@@ -77,47 +80,6 @@ export default function Home() {
         <Heading as="h1" size="lg" fontWeight="bold">
           レシピ一覧
         </Heading>
-        <Flex mt={8}>
-          <Box ml={6}>
-            <Box bg="white" rounded="full" p={1} shadow="lg">
-              <IconButton
-                aria-label="edit"
-                bg="gray.300"
-                color="white"
-                rounded="full"
-                mr={1}
-                icon={<EditIcon />}
-              />
-              <IconButton
-                aria-label="view"
-                bg="white"
-                color="gray.400"
-                rounded="full"
-                icon={<ViewIcon />}
-              />
-            </Box>
-            <Box mt={3}>
-              <IconButton
-                aria-label="view"
-                shadow="lg"
-                bg="white"
-                color="gray.400"
-                rounded="full"
-                icon={<AttachmentIcon />}
-              />
-            </Box>
-            <Box mt={3}>
-              <IconButton
-                aria-label="view"
-                shadow="lg"
-                bg="white"
-                color="gray.400"
-                rounded="full"
-                icon={<AddIcon />}
-              />
-            </Box>
-          </Box>
-        </Flex>
       </Box>
     </Flex>
   );

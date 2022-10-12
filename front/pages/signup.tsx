@@ -52,7 +52,7 @@ export default function Signup() {
       alert("パスワードが一致しません");
     }
   };
-  
+
   return (
     <Flex>
       <Box

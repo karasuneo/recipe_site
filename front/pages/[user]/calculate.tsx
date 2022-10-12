@@ -99,5 +99,3 @@ export default function Home() {
     </Flex>
   );
 }
-
-const ParagraphSkeleton = () => <Skeleton mb={4} h={"1rem"}></Skeleton>;

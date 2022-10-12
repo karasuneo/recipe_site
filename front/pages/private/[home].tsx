@@ -3,6 +3,11 @@ import { useRouter } from "next/router";
 import { useAuth } from "../../hooks/firebase";
 import {
   Box,
+  Tab,
+  Tabs,
+  TabList,
+  TabPanels,
+  TabPanel,
   Button,
   Flex,
   Heading,
@@ -24,7 +29,6 @@ import { Skeleton } from "@chakra-ui/skeleton";
 
 export default function Home() {
   const auth = useAuth();
-  const currentpathname = location.pathname;
   const router = useRouter();
 
   const handleSignout = async () => {
@@ -32,10 +36,10 @@ export default function Home() {
     await router.push("/signin");
   };
   const handleFavorite = async () => {
+    const currentpathname = location.pathname;
     await router.push(currentpathname + "/favorite");
   };
   const handleRedirect = async () => {
-    console.log(currentpathname + "");
     router.reload();
   };
 
@@ -76,10 +80,26 @@ export default function Home() {
         </Box>
       </Flex>
 
-      <Box mt={"6rem"} mx="auto">
-        <Heading as="h1" size="lg" fontWeight="bold">
-          レシピ一覧
-        </Heading>
+      <Box w="100%" mt={"4.5rem"} mx="auto">
+        <Tabs isFitted>
+          <TabList>
+            <Tab>レシピ一覧</Tab>
+            <Tab>お気に入り</Tab>
+            <Tab>カロリー計算</Tab>
+          </TabList>
+
+          <TabPanels>
+            <TabPanel>
+              <p>one!</p>
+            </TabPanel>
+            <TabPanel>
+              <p>two!</p>
+            </TabPanel>
+            <TabPanel>
+              <p>three!</p>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
       </Box>
     </Flex>
   );

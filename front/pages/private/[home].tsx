@@ -29,9 +29,11 @@ export default function Home() {
   const router = useRouter();
 
   const handleSignout = async () => {
-    console.log(currentUser);
     await signOut(auth);
     await router.push("/signin");
+  };
+  const handleRedirect = async () => {
+    router.reload();
   };
 
   return (
@@ -45,6 +47,7 @@ export default function Home() {
         py={4}
         px={8}
       >
+        <Button onClick={() => handleRedirect()}>かろナビ！</Button>
         <Box>
           <IconButton
             aria-label="back"

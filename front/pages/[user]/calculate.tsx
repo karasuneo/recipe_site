@@ -10,21 +10,13 @@ import {
   TabPanel,
   Button,
   Flex,
-  Heading,
   Input,
   IconButton,
   Spacer,
   InputGroup,
   InputRightAddon,
 } from "@chakra-ui/react";
-import {
-  ViewIcon,
-  EditIcon,
-  AttachmentIcon,
-  AddIcon,
-  ChevronLeftIcon,
-  SearchIcon,
-} from "@chakra-ui/icons";
+import { ChevronLeftIcon, SearchIcon } from "@chakra-ui/icons";
 import { Skeleton } from "@chakra-ui/skeleton";
 
 export default function Home() {
@@ -35,9 +27,13 @@ export default function Home() {
     await signOut(auth);
     await router.push("/signin");
   };
+  const handleHome = async () => {
+      const currentpathname = location.pathname.replace("home", "");
+      await router.push(currentpathname + "home");
+    };
   const handleFavorite = async () => {
-    const currentpathname = location.pathname;
-    await router.push(currentpathname + "/favorite");
+    const currentpathname = location.pathname.replace("home", "");
+    await router.push(currentpathname + "favorite");
   };
   const handleRedirect = async () => {
     router.reload();
@@ -81,13 +77,12 @@ export default function Home() {
       </Flex>
 
       <Box w="100%" mt={"4.5rem"} mx="auto">
-        <Tabs isFitted>
+        <Tabs defaultIndex={0} isFitted>
           <TabList>
-            <Tab>レシピ一覧</Tab>
-            <Tab>お気に入り</Tab>
-            <Tab>カロリー計算</Tab>
+            <Tab onClick={() => handleHome()}>レシピ一覧</Tab>
+            <Tab onClick={() => handleFavorite()}>お気に入り</Tab>
+            <Tab onClick={() => handleRedirect()}>カロリー計算</Tab>
           </TabList>
-
           <TabPanels>
             <TabPanel>
               <p>one!</p>

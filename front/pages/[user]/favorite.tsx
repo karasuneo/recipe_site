@@ -17,7 +17,6 @@ import {
   InputRightAddon,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, SearchIcon } from "@chakra-ui/icons";
-import { Skeleton } from "@chakra-ui/skeleton";
 
 export default function Home() {
   const auth = useAuth();
@@ -77,7 +76,7 @@ export default function Home() {
       </Flex>
 
       <Box w="100%" mt={"4.5rem"} mx="auto">
-        <Tabs defaultIndex={0} isFitted>
+        <Tabs defaultIndex={1} isFitted>
           <TabList>
             <Tab onClick={() => handleHome()}>レシピ一覧</Tab>
             <Tab onClick={() => handleRedirect()}>お気に入り</Tab>

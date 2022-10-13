@@ -17,7 +17,7 @@ import {
   InputRightAddon,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, SearchIcon } from "@chakra-ui/icons";
-import { Skeleton } from "@chakra-ui/skeleton";
+
 
 export default function Home() {
   const auth = useAuth();

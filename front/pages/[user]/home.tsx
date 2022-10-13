@@ -3,21 +3,25 @@ import { useRouter } from "next/router";
 import { useAuth } from "../../hooks/firebase";
 import {
   Box,
+  Text,
   Tab,
   Tabs,
   TabList,
   TabPanels,
   TabPanel,
   Button,
+  Image,
   Flex,
   Input,
   IconButton,
   Spacer,
   InputGroup,
   InputRightAddon,
+  Heading,
+  HStack,
+  Center,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, SearchIcon } from "@chakra-ui/icons";
-
 
 export default function Home() {
   const auth = useAuth();
@@ -85,7 +89,57 @@ export default function Home() {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <p>one!</p>
+              <HStack spacing="3">
+                <Box
+                  w="70%"
+                  h="25%"
+                  bg="white"
+                  mx="auto"
+                  _hover={{
+                    opacity: "0.5",
+                  }}
+                >
+                  <Center>
+                    <Image
+                      src="https://image.space.rakuten.co.jp/d/strg/ctrl/3/5bab30010b628b9d02a78e4673f273dd1bf3d4d2.86.2.3.2.jpg"
+                      fallbackSrc="https://via.placeholder.com/150"
+                      borderRadius="10%"
+                      boxSize="200px"
+                      alt="Dan Abramov"
+                    />
+                  </Center>
+                  <Heading>我家の☆毎日ゴハン</Heading>
+                  <Text>
+                    香ばしくて甘いお芋が、レンジを使うので手早く食べられますよ♪
+                  </Text>
+                </Box>
+                <Box w="100%" mx="auto">
+                  <Image
+                    src="https://image.space.rakuten.co.jp/d/strg/ctrl/3/5bab30010b628b9d02a78e4673f273dd1bf3d4d2.86.2.3.2.jpg/"
+                    fallbackSrc="https://via.placeholder.com/150"
+                    borderRadius="10%"
+                    boxSize="200px"
+                    alt="Dan Abramov"
+                  />
+                  <Heading>我家の☆毎日ゴハン</Heading>
+                  <Text>
+                    香ばしくて甘いお芋が、レンジを使うので手早く食べられますよ♪
+                  </Text>
+                </Box>
+                <Box w="100%" mx="auto">
+                  <Image
+                    src="https://image.space.rakuten.co.jp/d/strg/ctrl/3/5bab30010b628b9d02a78e4673f273dd1bf3d4d2.86.2.3.2.jpg"
+                    fallbackSrc="https://via.placeholder.com/150"
+                    borderRadius="10%"
+                    boxSize="200px"
+                    alt="Dan Abramov"
+                  />
+                  <Heading>我家の☆毎日ゴハン</Heading>
+                  <Text>
+                    香ばしくて甘いお芋が、レンジを使うので手早く食べられますよ♪
+                  </Text>
+                </Box>
+              </HStack>
             </TabPanel>
             <TabPanel>
               <p>two!</p>

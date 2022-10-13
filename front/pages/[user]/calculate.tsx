@@ -27,11 +27,11 @@ export default function Home() {
     await router.push("/signin");
   };
   const handleHome = async () => {
-      const currentpathname = location.pathname.replace("home", "");
+      const currentpathname = location.pathname.replace("calculate", "");
       await router.push(currentpathname + "home");
     };
   const handleFavorite = async () => {
-    const currentpathname = location.pathname.replace("home", "");
+    const currentpathname = location.pathname.replace("calculate", "");
     await router.push(currentpathname + "favorite");
   };
   const handleRedirect = async () => {

@@ -27,12 +27,12 @@ export default function Home() {
     await router.push("/signin");
   };
   const handleHome = async () => {
-    const currentpathname = location.pathname.replace("favorite", "");
-    await router.push(currentpathname + "home");
-  };
-  const handleCalculate = async () => {
-    const currentpathname = location.pathname.replace("favorite", "");
-    await router.push(currentpathname + "calculate");
+      const currentpathname = location.pathname.replace("calculate", "");
+      await router.push(currentpathname + "home");
+    };
+  const handleFavorite = async () => {
+    const currentpathname = location.pathname.replace("calculate", "");
+    await router.push(currentpathname + "favorite");
   };
   const handleRedirect = async () => {
     router.reload();
@@ -76,11 +76,11 @@ export default function Home() {
       </Flex>
 
       <Box w="100%" mt={"4.5rem"} mx="auto">
-        <Tabs defaultIndex={1} isFitted>
+        <Tabs defaultIndex={2} isFitted>
           <TabList>
             <Tab onClick={() => handleHome()}>レシピ一覧</Tab>
-            <Tab onClick={() => handleRedirect()}>お気に入り</Tab>
-            <Tab onClick={() => handleCalculate()}>カロリー計算</Tab>
+            <Tab onClick={() => handleFavorite()}>お気に入り</Tab>
+            <Tab onClick={() => handleRedirect()}>カロリー計算</Tab>
           </TabList>
           <TabPanels>
             <TabPanel>

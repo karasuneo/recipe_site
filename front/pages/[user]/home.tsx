@@ -20,10 +20,14 @@ import {
   Heading,
   HStack,
   Center,
+  useToast,
+  color,
 } from "@chakra-ui/react";
-import { ChevronLeftIcon, SearchIcon } from "@chakra-ui/icons";
+import { ChevronLeftIcon, SearchIcon, StarIcon } from "@chakra-ui/icons";
 
 export default function Home() {
+  const toast = useToast();
+
   const auth = useAuth();
   const router = useRouter();
 
@@ -89,7 +93,7 @@ export default function Home() {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <HStack spacing="3">
+              <HStack spacing="4">
                 <Box
                   w="70%"
                   h="100%"
@@ -101,6 +105,77 @@ export default function Home() {
                     opacity: "0.5",
                   }}
                 >
+                  <IconButton
+                    variant="outline"
+                    aria-label="favorite"
+                    colorScheme="yellow"
+                    icon={<StarIcon />}
+                    onClick={() =>
+                      toast({
+                        position: "bottom-left",
+                        render: () => (
+                          <Box color="white" p={3} bg="yellow.400">
+                            お気に入り登録しました！
+                          </Box>
+                        ),
+                      })
+                    }
+                  ></IconButton>
+                  <Center>
+                    <Image
+                      src="https://image.space.rakuten.co.jp/d/strg/ctrl/3/99d456a484fa050d1af69717950d6ee44e0d76c7.91.2.3.2.jpg"
+                      fallbackSrc="https://via.placeholder.com/150"
+                      borderRadius="10%"
+                      boxSize="200px"
+                      alt="Dan Abramov"
+                      onClick={() =>
+                        toast({
+                          position: "bottom-left",
+                          render: () => (
+                            <Box color="white" p={3} bg="yellow.400">
+                              お気に入り登録しました！
+                            </Box>
+                          ),
+                        })
+                      }
+                    />
+                  </Center>
+                  <Heading color="orange">
+                    レンジで絶品！ふわとろ♪木綿豆腐のチーズおかか
+                  </Heading>
+                  <Text>
+                    豆腐とチーズが大好きな1歳の次男が「ん～♪んまっ！んまっ！」と言いながら食べてくれる、親子でお気に入りの１品です♪
+                    チーズおかかの黄金コンビで簡単・絶品・温奴♪
+                  </Text>
+                  <Text opacity="0.5">料理時間：5分以内</Text>
+                </Box>
+                <Box
+                  w="70%"
+                  h="100%"
+                  shadow="md"
+                  p={5}
+                  borderRadius="10%"
+                  mx="auto"
+                  _hover={{
+                    opacity: "0.5",
+                  }}
+                >
+                  <IconButton
+                    variant="outline"
+                    aria-label="favorite"
+                    colorScheme="yellow"
+                    icon={<StarIcon />}
+                    onClick={() =>
+                      toast({
+                        position: "bottom-left",
+                        render: () => (
+                          <Box color="white" p={3} bg="yellow.400">
+                            お気に入り登録しました！
+                          </Box>
+                        ),
+                      })
+                    }
+                  ></IconButton>
                   <Center>
                     <Image
                       src="https://image.space.rakuten.co.jp/d/strg/ctrl/3/5bab30010b628b9d02a78e4673f273dd1bf3d4d2.86.2.3.2.jpg"
@@ -110,7 +185,7 @@ export default function Home() {
                       alt="Dan Abramov"
                     />
                   </Center>
-                  <Heading>我家の☆毎日ゴハン</Heading>
+                  <Heading color="orange">我家の☆毎日ゴハン</Heading>
                   <Text>
                     香ばしくて甘いお芋が、レンジを使うので手早く食べられますよ♪
                   </Text>
@@ -126,6 +201,12 @@ export default function Home() {
                     opacity: "0.5",
                   }}
                 >
+                  <IconButton
+                    variant="outline"
+                    aria-label="favorite"
+                    colorScheme="yellow"
+                    icon={<StarIcon />}
+                  ></IconButton>
                   <Center>
                     <Image
                       src="https://image.space.rakuten.co.jp/d/strg/ctrl/3/5bab30010b628b9d02a78e4673f273dd1bf3d4d2.86.2.3.2.jpg"
@@ -135,32 +216,7 @@ export default function Home() {
                       alt="Dan Abramov"
                     />
                   </Center>
-                  <Heading>我家の☆毎日ゴハン</Heading>
-                  <Text>
-                    香ばしくて甘いお芋が、レンジを使うので手早く食べられますよ♪
-                  </Text>
-                </Box>
-                <Box
-                  w="70%"
-                  h="100%"
-                  shadow="md"
-                  p={5}
-                  borderRadius="10%"
-                  mx="auto"
-                  _hover={{
-                    opacity: "0.5",
-                  }}
-                >
-                  <Center>
-                    <Image
-                      src="https://image.space.rakuten.co.jp/d/strg/ctrl/3/5bab30010b628b9d02a78e4673f273dd1bf3d4d2.86.2.3.2.jpg"
-                      fallbackSrc="https://via.placeholder.com/150"
-                      borderRadius="10%"
-                      boxSize="200px"
-                      alt="Dan Abramov"
-                    />
-                  </Center>
-                  <Heading>我家の☆毎日ゴハン</Heading>
+                  <Heading color="orange">我家の☆毎日ゴハン</Heading>
                   <Text>
                     香ばしくて甘いお芋が、レンジを使うので手早く食べられますよ♪
                   </Text>

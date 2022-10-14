@@ -92,8 +92,10 @@ export default function Home() {
               <HStack spacing="3">
                 <Box
                   w="70%"
-                  h="25%"
-                  bg="white"
+                  h="100%"
+                  shadow="md"
+                  p={5}
+                  borderRadius="10%"
                   mx="auto"
                   _hover={{
                     opacity: "0.5",
@@ -115,8 +117,10 @@ export default function Home() {
                 </Box>
                 <Box
                   w="70%"
-                  h="25%"
-                  bg="white"
+                  h="100%"
+                  shadow="md"
+                  p={5}
+                  borderRadius="10%"
                   mx="auto"
                   _hover={{
                     opacity: "0.5",
@@ -138,8 +142,10 @@ export default function Home() {
                 </Box>
                 <Box
                   w="70%"
-                  h="25%"
-                  bg="white"
+                  h="100%"
+                  shadow="md"
+                  p={5}
+                  borderRadius="10%"
                   mx="auto"
                   _hover={{
                     opacity: "0.5",

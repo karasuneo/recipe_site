@@ -1,6 +1,14 @@
+import React, { useState } from "react";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useAuth } from "../../hooks/firebase";
+import algoliasearch from "algoliasearch/lite";
+import {
+  SearchBox,
+  Hits,
+  Highlight,
+  InstantSearch,
+} from "react-instantsearch-dom";
 import {
   Box,
   Text,
@@ -21,11 +29,34 @@ import {
   HStack,
   Center,
   useToast,
-  color,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, SearchIcon, StarIcon } from "@chakra-ui/icons";
 
-export default function Home() {
+const algoliaSettings = {
+  searchClient: algoliasearch(`JXD32XW6C6`, `cf86a070eb44ee82d3620a22dcaa99c8`),
+  indexName: "kalo-navi!",
+};
+
+// ヒットした項目をリンクとして表示
+// Highlightを入れておくと検索と一致したところにスタイルを当てられる
+const Hit = ({ hit }: any) => {
+  return (
+    <div className="p-7">
+      氏名：{hit.categoryName}
+      <div className="hitName">
+        <Highlight attribute="title" tagName="span" hit={hit} />
+      </div>
+    </div>
+  );
+};
+
+const SearchResult = () => {
+  return <Hits hitComponent={Hit} />;
+};
+
+const Home: React.FC = () => {
+  const [suggestDisplay, toggleDisplay] = useState("hidden");
+
   const toast = useToast();
 
   const auth = useAuth();
@@ -58,6 +89,27 @@ export default function Home() {
         py={4}
         px={8}
       >
+        <InstantSearch
+          searchClient={algoliaSettings.searchClient}
+          indexName={algoliaSettings.indexName}
+        >
+          <div
+            onFocus={() => toggleDisplay("block")}
+            onBlur={() =>
+              setTimeout(() => {
+                toggleDisplay("hidden");
+              }, 300)
+            }
+          >
+            <SearchBox translations={{ placeholder: "記事を検索" }} />
+          </div>
+          <div className={`relative ${suggestDisplay}`}>
+            <div className="bg-white search-result p-3 shadow-lg absolute w-full z-10 h-96 overflow-y-scroll">
+              <SearchResult />
+            </div>
+          </div>
+        </InstantSearch>
+
         <Button onClick={() => handleRedirect()}>かろナビ！</Button>
         <Box>
           <IconButton
@@ -234,4 +286,6 @@ export default function Home() {
       </Box>
     </Flex>
   );
-}
+};
+
+export default Home;

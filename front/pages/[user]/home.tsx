@@ -13,31 +13,16 @@ import {
   Configure,
 } from "react-instantsearch-dom";
 import {
-  RadioGroup,
-  Radio,
-  Stack,
-  Drawer,
   Box,
-  Text,
   Tab,
   Tabs,
   TabList,
   TabPanels,
   TabPanel,
   Button,
-  Image,
   Flex,
-  Input,
-  IconButton,
   Spacer,
-  InputGroup,
-  InputRightAddon,
-  Heading,
-  HStack,
-  VStack,
-  Center,
   useToast,
- 
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, SearchIcon, StarIcon } from "@chakra-ui/icons";
 
@@ -97,11 +82,6 @@ const Home: React.FC = () => {
 
   return (
     <Flex bg="gray.100" w="100vw" h="100vh">
-      
-      
-      
-        
-      
       <Flex
         as="header"
         position="fixed"
@@ -112,7 +92,7 @@ const Home: React.FC = () => {
         px={8}
       >
         <Button onClick={() => handleRedirect()}>かろナビ！</Button>
-        
+
         <Spacer />
 
         <Flex w="50%"></Flex>

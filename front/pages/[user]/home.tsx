@@ -4,6 +4,9 @@ import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useAuth } from "../../hooks/firebase";
 import algoliasearch from "algoliasearch/lite";
+import Header from "../../components/Header";
+import SideNav from "../../components/SideNav";
+
 import "instantsearch.css/themes/algolia.css"; // <== 追記：使いたいスタイルに合わせて変更
 import {
   SearchBox,
@@ -82,27 +85,8 @@ const Home: React.FC = () => {
 
   return (
     <Flex bg="gray.100" w="100vw" h="100vh">
-      <Flex
-        as="header"
-        position="fixed"
-        top={0}
-        width="full"
-        shadow="sm"
-        py={4}
-        px={8}
-      >
-        <Button onClick={() => handleRedirect()}>かろナビ！</Button>
-
-        <Spacer />
-
-        <Flex w="50%"></Flex>
-        <Spacer />
-        <Box>
-          <Button colorScheme="red" onClick={() => handleSignout()}>
-            サインアウト
-          </Button>
-        </Box>
-      </Flex>
+      <SideNav />
+      <Header />
 
       <Box w="100%" mt={"4.5rem"} mx="auto">
         <Tabs defaultIndex={0} isFitted>

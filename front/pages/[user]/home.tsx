@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Link from 'next/link'
+import Link from "next/link";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useAuth } from "../../hooks/firebase";
 import algoliasearch from "algoliasearch/lite";
-import "instantsearch.css/themes/algolia-min.css"; // <== 追記：使いたいスタイルに合わせて変更
+import "instantsearch.css/themes/algolia.css"; // <== 追記：使いたいスタイルに合わせて変更
 import {
   SearchBox,
   Hits,
@@ -13,6 +13,10 @@ import {
   Configure,
 } from "react-instantsearch-dom";
 import {
+  RadioGroup,
+  Radio,
+  Stack,
+  Drawer,
   Box,
   Text,
   Tab,
@@ -33,6 +37,7 @@ import {
   VStack,
   Center,
   useToast,
+ 
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, SearchIcon, StarIcon } from "@chakra-ui/icons";
 
@@ -47,38 +52,19 @@ const Hit = ({ hit }: any) => {
   const toast = useToast();
   return (
     <Link href={hit.categoryUrl}>
-    <Box
-      w="100%"
-      h="100%"
-      p={5}
-      borderRadius="10%"
-      mx="auto"
-      _hover={{
-        opacity: "0.5",
-      }}
-    >
-      
-      <IconButton
-        variant="outline"
-        aria-label="favorite"
-        colorScheme="yellow"
-        icon={<StarIcon />}
-        onClick={() =>
-          toast({
-            position: "bottom-left",
-            render: () => (
-              <Box color="white" p={3} bg="yellow.400">
-                お気に入り登録しました！
-              </Box>
-            ),
-          })
-        }
-      ></IconButton>
-      {hit.categoryName}
-      <Box className="hitName">
-        <Highlight attribute="title" tagName="span" hit={hit} />
+      <Box
+        w="100%"
+        h="100%"
+        mx="auto"
+        _hover={{
+          opacity: "0.5",
+        }}
+      >
+        {hit.categoryName}
+        <Box className="hitName">
+          <Highlight attribute="title" tagName="span" hit={hit} />
+        </Box>
       </Box>
-    </Box>
     </Link>
   );
 };
@@ -111,6 +97,11 @@ const Home: React.FC = () => {
 
   return (
     <Flex bg="gray.100" w="100vw" h="100vh">
+      
+      
+      
+        
+      
       <Flex
         as="header"
         position="fixed"
@@ -121,14 +112,7 @@ const Home: React.FC = () => {
         px={8}
       >
         <Button onClick={() => handleRedirect()}>かろナビ！</Button>
-        <Box>
-          <IconButton
-            aria-label="back"
-            color="black"
-            rounded="full"
-            icon={<ChevronLeftIcon />}
-          />
-        </Box>
+        
         <Spacer />
 
         <Flex w="50%"></Flex>
@@ -153,40 +137,18 @@ const Home: React.FC = () => {
                 searchClient={algoliaSettings.searchClient}
                 indexName={algoliaSettings.indexName}
               >
-                <Configure hitsPerPage={16} /> 
-                <Box
-                  onFocus={() => toggleDisplay("block")}
-                  onBlur={() =>
-                    setTimeout(() => {
-                      toggleDisplay("hidden");
-                    }, 300)
-                  }
-                >
-                  <SearchBox
-                    translations={{ placeholder: "食材、または料理名を入力" }}
-                  />
-                </Box>
-                <VStack spacing="4">
-                  <Box className={`relative ${suggestDisplay}`}>
-                    <Box className="bg-white search-result p-3 shadow-lg absolute w-full z-10 h-96 overflow-y-scroll">
-                      <SearchResult />
-                    </Box>
+                <Configure hitsPerPage={28} />
+
+                <SearchBox
+                  translations={{ placeholder: "食材、または料理名を入力" }}
+                />
+
+                <Box className={`relative ${suggestDisplay}`}>
+                  <Box className="bg-white search-result p-3 shadow-lg absolute w-full z-10 h-96 overflow-y-scroll">
+                    <SearchResult />
                   </Box>
-                </VStack>
+                </Box>
               </InstantSearch>
-              {/* <HStack spacing="4">
-                <Box
-                  w="70%"
-                  h="100%"
-                  shadow="md"
-                  p={5}
-                  borderRadius="10%"
-                  mx="auto"
-                  _hover={{
-                    opacity: "0.5",
-                  }}
-                ></Box>
-              </HStack> */}
             </TabPanel>
             <TabPanel>
               <p>two!</p>

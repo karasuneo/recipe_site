@@ -39,29 +39,25 @@ export default function SideNav() {
         <Flex mt="50" mb="100"></Flex>
         <Flex h="65vh" direction="column" justify="space-between">
           <Flex
-            h="20vh"
-            mb="32"
+            h="30vh"
+            mb="xl"
             direction="column"
             align="flex-start"
             justify="space-around"
           >
+            
             <Flex
+              onClick={() => handleHome()}
               fontSize="xl"
               color="gray"
               align="center"
-              fontWeight="800"
-              bg="pink.50"
-              p="3"
-              m="-3"
-              rounded="full"
               _hover={{
                 opacity: "0.5",
               }}
             >
               <CgProfile color="pink" />
-              <Text onClick={() => handleHome()} ml="3">
-                Search Recipe
-              </Text>
+
+              <Text ml="3">Search Recipe</Text>
             </Flex>
 
             <Flex

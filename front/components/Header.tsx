@@ -17,6 +17,7 @@ export default function Header() {
   };
   return (
     <Flex
+    bg="white"
       as="header"
       position="fixed"
       top={0}
@@ -24,6 +25,7 @@ export default function Header() {
       shadow="sm"
       py={4}
       px={8}
+      zIndex="9999"
     >
       <Button onClick={() => handleRedirect()}>かろナビ！</Button>
 

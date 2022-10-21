@@ -2,7 +2,7 @@ import { Flex, Heading, Text, ScrollProps } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { signOut } from "firebase/auth";
 import { useAuth } from "../hooks/firebase";
-import { BsPlusSquare, BsNewspaper } from "react-icons/bs";
+import { BsNewspaper } from "react-icons/bs";
 import { RiDoorOpenLine, RiMailStarLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 
@@ -12,20 +12,20 @@ export default function SideNav() {
 
   const handleHome = async () => {
     var currentpathname = location.pathname.replace("home", "");
-    currentpathname.replace("favorite", "");
-    currentpathname.replace("calculate", "");
+    var currentpathname = currentpathname.replace("favorite", "");
+    var currentpathname = currentpathname.replace("calculate", "");
     await router.push(currentpathname + "home");
   };
   const handleFavorite = async () => {
     var currentpathname = location.pathname.replace("home", "");
-    currentpathname.replace("favorite", "");
-    currentpathname.replace("calculate", "");
+    var currentpathname = currentpathname.replace("favorite", "");
+    var currentpathname = currentpathname.replace("calculate", "");
     await router.push(currentpathname + "favorite");
   };
   const handleCalculate = async () => {
     var currentpathname = location.pathname.replace("home", "");
-    currentpathname.replace("favorite", "");
-    currentpathname.replace("calculate", "");
+    var currentpathname = currentpathname.replace("favorite", "");
+    var currentpathname = currentpathname.replace("calculate", "");
     await router.push(currentpathname + "calculate");
   };
   const handleSignout = async () => {
@@ -45,7 +45,6 @@ export default function SideNav() {
             align="flex-start"
             justify="space-around"
           >
-            
             <Flex
               onClick={() => handleHome()}
               fontSize="xl"

@@ -14,7 +14,7 @@ export default function Home() {
         <Divider orientation="vertical" />
       </Center>
       <Spacer />
-      <Box w="82%" mt={"4.5rem"} mx="auto">
+      <Box w="80%" mt={"4.5rem"} mx="auto">
         <Search />
       </Box>
     </Flex>

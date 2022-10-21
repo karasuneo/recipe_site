@@ -11,21 +11,21 @@ export default function SideNav() {
   const router = useRouter();
 
   const handleHome = async () => {
-    const currentpathname = location.pathname.replace("home", "");
+    var currentpathname = location.pathname.replace("home", "");
     currentpathname.replace("favorite", "");
-    currentpathname.replace("calculete", "");
+    currentpathname.replace("calculate", "");
     await router.push(currentpathname + "home");
   };
   const handleFavorite = async () => {
-    const currentpathname = location.pathname.replace("home", "");
+    var currentpathname = location.pathname.replace("home", "");
     currentpathname.replace("favorite", "");
-    currentpathname.replace("calculete", "");
+    currentpathname.replace("calculate", "");
     await router.push(currentpathname + "favorite");
   };
   const handleCalculate = async () => {
-    const currentpathname = location.pathname.replace("home", "");
+    var currentpathname = location.pathname.replace("home", "");
     currentpathname.replace("favorite", "");
-    currentpathname.replace("calculete", "");
+    currentpathname.replace("calculate", "");
     await router.push(currentpathname + "calculate");
   };
   const handleSignout = async () => {

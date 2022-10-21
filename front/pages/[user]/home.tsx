@@ -1,16 +1,11 @@
-import React, { useState } from "react";
-import { useRouter } from "next/router";
-import { useAuth } from "../../hooks/firebase";
 import Header from "../../components/Header";
 import SideNav from "../../components/SideNav";
 import Search from "../../components/Search";
 import "instantsearch.css/themes/algolia.css";
 import { Box, Flex, Spacer, Center, Divider } from "@chakra-ui/react";
 
-const Home: React.FC = () => {
-  const auth = useAuth();
-  const router = useRouter();
-
+export default function Home() {
+  
   return (
     <Flex bg="white" w="100vw" h="100vh">
       <Header />
@@ -26,4 +21,3 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;

@@ -2,7 +2,7 @@ import React from "react";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useAuth } from "../hooks/firebase";
-import { Flex, Box, Button, Spacer } from "@chakra-ui/react";
+import { Flex, Box, Button, Text, Spacer } from "@chakra-ui/react";
 
 export default function Header() {
   const auth = useAuth();
@@ -17,7 +17,7 @@ export default function Header() {
   };
   return (
     <Flex
-    bg="white"
+      bg="white"
       as="header"
       position="fixed"
       top={0}
@@ -30,7 +30,8 @@ export default function Header() {
       <Button onClick={() => handleRedirect()}>かろナビ！</Button>
 
       <Spacer />
-
+      
+      <Spacer />
       <Flex w="50%"></Flex>
       <Spacer />
       <Box>

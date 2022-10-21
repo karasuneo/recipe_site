@@ -34,7 +34,7 @@ export default function SideNav() {
   };
 
   return (
-    <Flex w="20%" direction="column" align="center">
+    <Flex w="20%" direction="column" align="center" position="fixed">
       <Flex direction="column" justify="space-between">
         <Flex mt="50" mb="100"></Flex>
         <Flex h="65vh" direction="column" justify="space-between">

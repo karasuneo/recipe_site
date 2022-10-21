@@ -1,100 +1,23 @@
-import { signOut } from "firebase/auth";
-import { useRouter } from "next/router";
-import { useAuth } from "../../hooks/firebase";
-import {
-  Box,
-  Tab,
-  Tabs,
-  TabList,
-  TabPanels,
-  TabPanel,
-  Button,
-  Flex,
-  Input,
-  IconButton,
-  Spacer,
-  InputGroup,
-  InputRightAddon,
-} from "@chakra-ui/react";
-import { ChevronLeftIcon, SearchIcon } from "@chakra-ui/icons";
+import Header from "../../components/Header";
+import SideNav from "../../components/SideNav";
+import Search from "../../components/Search";
+import "instantsearch.css/themes/algolia.css";
+import { Box, Flex, Spacer, Center, Divider } from "@chakra-ui/react";
 
-export default function Home() {
-  const auth = useAuth();
-  const router = useRouter();
-
-  const handleSignout = async () => {
-    await signOut(auth);
-    await router.push("/signin");
-  };
-  const handleHome = async () => {
-      const currentpathname = location.pathname.replace("calculate", "");
-      await router.push(currentpathname + "home");
-    };
-  const handleFavorite = async () => {
-    const currentpathname = location.pathname.replace("calculate", "");
-    await router.push(currentpathname + "favorite");
-  };
-  const handleRedirect = async () => {
-    router.reload();
-  };
-
+export default function Calculate() {
+  
   return (
-    <Flex bg="gray.100" w="100vw" h="100vh">
-      <Flex
-        as="header"
-        position="fixed"
-        top={0}
-        width="full"
-        shadow="sm"
-        py={4}
-        px={8}
-      >
-        <Button onClick={() => handleRedirect()}>かろナビ！</Button>
-        <Box>
-          <IconButton
-            aria-label="back"
-            color="black"
-            rounded="full"
-            icon={<ChevronLeftIcon />}
-          />
-        </Box>
-        <Spacer />
-        <Flex w="50%">
-          <InputGroup>
-            <Input type="tel" placeholder="食品名または料理名を入力" />
-            <InputRightAddon>
-              {<IconButton aria-label="検索" size="sm" icon={<SearchIcon />} />}
-            </InputRightAddon>
-          </InputGroup>
-        </Flex>
-        <Spacer />
-        <Box>
-          <Button colorScheme="red" onClick={() => handleSignout()}>
-            サインアウト
-          </Button>
-        </Box>
-      </Flex>
-
-      <Box w="100%" mt={"4.5rem"} mx="auto">
-        <Tabs defaultIndex={2} isFitted>
-          <TabList>
-            <Tab onClick={() => handleHome()}>レシピ一覧</Tab>
-            <Tab onClick={() => handleFavorite()}>お気に入り</Tab>
-            <Tab onClick={() => handleRedirect()}>カロリー計算</Tab>
-          </TabList>
-          <TabPanels>
-            <TabPanel>
-              <p>one!</p>
-            </TabPanel>
-            <TabPanel>
-              <p>two!</p>
-            </TabPanel>
-            <TabPanel>
-              <p>three!</p>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+    <Flex bg="white" w="100vw" h="100vh">
+      <Header />
+      <SideNav />
+      <Center h="100vw" my="10" mr="8">
+        <Divider orientation="vertical" />
+      </Center>
+      <Spacer />
+      <Box w="82%" mt={"4.5rem"} mx="auto">
+        <Search />
       </Box>
     </Flex>
   );
-}
+};
+

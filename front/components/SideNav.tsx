@@ -12,20 +12,20 @@ export default function SideNav() {
 
   const handleHome = async () => {
     var currentpathname = location.pathname.replace("home", "");
-    currentpathname.replace("favorite", "");
-    currentpathname.replace("calculate", "");
+    var currentpathname = currentpathname.replace("favorite", "");
+    var currentpathname = currentpathname.replace("calculate", "");
     await router.push(currentpathname + "home");
   };
   const handleFavorite = async () => {
     var currentpathname = location.pathname.replace("home", "");
-    currentpathname.replace("favorite", "");
-    currentpathname.replace("calculate", "");
+    var currentpathname = currentpathname.replace("favorite", "");
+    var currentpathname = currentpathname.replace("calculate", "");
     await router.push(currentpathname + "favorite");
   };
   const handleCalculate = async () => {
     var currentpathname = location.pathname.replace("home", "");
-    currentpathname.replace("favorite", "");
-    currentpathname.replace("calculate", "");
+    var currentpathname = currentpathname.replace("favorite", "");
+    var currentpathname = currentpathname.replace("calculate", "");
     await router.push(currentpathname + "calculate");
   };
   const handleSignout = async () => {
@@ -45,7 +45,6 @@ export default function SideNav() {
             align="flex-start"
             justify="space-around"
           >
-            
             <Flex
               onClick={() => handleHome()}
               fontSize="xl"

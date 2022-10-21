@@ -1,24 +1,38 @@
 import { Flex, Heading, Text, ScrollProps } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { signOut } from "firebase/auth";
+import { useAuth } from "../hooks/firebase";
 import { BsPlusSquare, BsNewspaper } from "react-icons/bs";
 import { RiDoorOpenLine, RiMailStarLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 
 export default function SideNav() {
+  const auth = useAuth();
   const router = useRouter();
 
   const handleHome = async () => {
-    const currentpathname = location.pathname.replace("favorite", "");
+    const currentpathname = location.pathname.replace("home", "");
+    currentpathname.replace("favorite", "");
+    currentpathname.replace("calculete", "");
     await router.push(currentpathname + "home");
   };
   const handleFavorite = async () => {
     const currentpathname = location.pathname.replace("home", "");
+    currentpathname.replace("favorite", "");
+    currentpathname.replace("calculete", "");
     await router.push(currentpathname + "favorite");
   };
   const handleCalculate = async () => {
     const currentpathname = location.pathname.replace("home", "");
+    currentpathname.replace("favorite", "");
+    currentpathname.replace("calculete", "");
     await router.push(currentpathname + "calculate");
   };
+  const handleSignout = async () => {
+    await signOut(auth);
+    await router.push("/signin");
+  };
+
   return (
     <Flex w="20%" direction="column" align="center">
       <Flex direction="column" justify="space-between">
@@ -76,7 +90,16 @@ export default function SideNav() {
               <Text ml="3">Calcurate</Text>
             </Flex>
           </Flex>
-          <Flex fontSize="2xl" mb={30} color="gray" align="center">
+          <Flex
+            fontSize="2xl"
+            mb={30}
+            color="gray"
+            align="center"
+            onClick={() => handleSignout()}
+            _hover={{
+              opacity: "0.5",
+            }}
+          >
             <RiDoorOpenLine />
             <Text ml={3} fontSize="md">
               Log out

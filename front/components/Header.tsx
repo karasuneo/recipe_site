@@ -12,14 +12,6 @@ export default function Header() {
     await signOut(auth);
     await router.push("/signin");
   };
-  const handleFavorite = async () => {
-    const currentpathname = location.pathname.replace("home", "");
-    await router.push(currentpathname + "favorite");
-  };
-  const handleCalculate = async () => {
-    const currentpathname = location.pathname.replace("home", "");
-    await router.push(currentpathname + "calculate");
-  };
   const handleRedirect = async () => {
     router.reload();
   };

@@ -1,30 +1,29 @@
-import { Flex, Heading, Text, Image } from "@chakra-ui/react";
+import { Flex, Heading, Text, ScrollProps } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { BsPlusSquare, BsNewspaper } from "react-icons/bs";
 import { RiDoorOpenLine, RiMailStarLine } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
-import companyIcon from "../public/favicon.ico";
 
 export default function SideNav() {
+  const router = useRouter();
+
+  const handleHome = async () => {
+    const currentpathname = location.pathname.replace("favorite", "");
+    await router.push(currentpathname + "home");
+  };
+  const handleFavorite = async () => {
+    const currentpathname = location.pathname.replace("home", "");
+    await router.push(currentpathname + "favorite");
+  };
+  const handleCalculate = async () => {
+    const currentpathname = location.pathname.replace("home", "");
+    await router.push(currentpathname + "calculate");
+  };
   return (
     <Flex w="20%" direction="column" align="center">
       <Flex direction="column" justify="space-between">
-        <Flex mt="50" mb="100">
-          <Image
-            borderRadius="full"
-            boxSize="60px"
-            src={companyIcon.src}
-            fallbackSrc="https://via.placeholder.com/150"
-            alt="company icon"
-          />
-          <Heading ml="3" fontWeight="800" fontSize="xl" alignSelf="center">
-            The Earth
-          </Heading>
-        </Flex>
+        <Flex mt="50" mb="100"></Flex>
         <Flex h="65vh" direction="column" justify="space-between">
-          <Flex fontSize="xl" color="gray" align="center">
-            <BsPlusSquare />
-            <Text ml="3">Add Resume</Text>
-          </Flex>
           <Flex
             h="20vh"
             mb="32"
@@ -41,18 +40,40 @@ export default function SideNav() {
               p="3"
               m="-3"
               rounded="full"
+              _hover={{
+                opacity: "0.5",
+              }}
             >
               <CgProfile color="pink" />
-              <Text ml="3">My Profile</Text>
+              <Text onClick={() => handleHome()} ml="3">
+                Search Recipe
+              </Text>
             </Flex>
 
-            <Flex fontSize="xl" color="gray" align="center">
+            <Flex
+              fontSize="xl"
+              color="gray"
+              align="center"
+              _hover={{
+                opacity: "0.5",
+              }}
+            >
               <BsNewspaper color="#63B3ED" />
-              <Text ml="3">Jobs</Text>
+              <Text onClick={() => handleFavorite()} ml="3">
+                Favorite
+              </Text>
             </Flex>
-            <Flex fontSize="xl" color="gray" align="center">
+            <Flex
+              onClick={() => handleCalculate()}
+              fontSize="xl"
+              color="gray"
+              align="center"
+              _hover={{
+                opacity: "0.5",
+              }}
+            >
               <RiMailStarLine color="#ECC94B" />
-              <Text ml="3">Employee</Text>
+              <Text ml="3">Calcurate</Text>
             </Flex>
           </Flex>
           <Flex fontSize="2xl" mb={30} color="gray" align="center">

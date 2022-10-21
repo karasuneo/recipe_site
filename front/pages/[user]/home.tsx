@@ -6,6 +6,7 @@ import { useAuth } from "../../hooks/firebase";
 import algoliasearch from "algoliasearch/lite";
 import Header from "../../components/Header";
 import SideNav from "../../components/SideNav";
+import Search from "../../components/Search";
 
 import "instantsearch.css/themes/algolia.css"; // <== 追記：使いたいスタイルに合わせて変更
 import {
@@ -26,6 +27,8 @@ import {
   Flex,
   Spacer,
   useToast,
+  Center,
+  Divider,
 } from "@chakra-ui/react";
 import { ChevronLeftIcon, SearchIcon, StarIcon } from "@chakra-ui/icons";
 
@@ -62,8 +65,6 @@ const SearchResult = () => {
 };
 
 const Home: React.FC = () => {
-  const [suggestDisplay, toggleDisplay] = useState("hidden");
-
   const auth = useAuth();
   const router = useRouter();
 
@@ -84,8 +85,12 @@ const Home: React.FC = () => {
   };
 
   return (
-    <Flex bg="gray.100" w="100vw" h="100vh">
+    <Flex bg="white" w="100vw" h="100vh">
       <SideNav />
+      <Center my="10" mr="8">
+        {/* <Divider orientation="vertical" /> */}
+      </Center>
+
       <Header />
 
       <Box w="100%" mt={"4.5rem"} mx="auto">
@@ -97,22 +102,7 @@ const Home: React.FC = () => {
           </TabList>
           <TabPanels>
             <TabPanel>
-              <InstantSearch
-                searchClient={algoliaSettings.searchClient}
-                indexName={algoliaSettings.indexName}
-              >
-                <Configure hitsPerPage={28} />
-
-                <SearchBox
-                  translations={{ placeholder: "食材、または料理名を入力" }}
-                />
-
-                <Box className={`relative ${suggestDisplay}`}>
-                  <Box className="bg-white search-result p-3 shadow-lg absolute w-full z-10 h-96 overflow-y-scroll">
-                    <SearchResult />
-                  </Box>
-                </Box>
-              </InstantSearch>
+              <Search />
             </TabPanel>
             <TabPanel>
               <p>two!</p>

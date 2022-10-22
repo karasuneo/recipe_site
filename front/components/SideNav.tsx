@@ -1,4 +1,4 @@
-import { Flex, Heading, Text, ScrollProps } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { signOut } from "firebase/auth";
 import { useAuth } from "../hooks/firebase";

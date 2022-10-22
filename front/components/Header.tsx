@@ -1,4 +1,3 @@
-import React from "react";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useAuth } from "../hooks/firebase";

@@ -1,8 +1,10 @@
 import React from "react";
+import Link from "next/link";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useAuth } from "../hooks/firebase";
-import { Flex, Box, Button, Text, Spacer } from "@chakra-ui/react";
+import { Flex, Box, Button, Text, Spacer, Heading } from "@chakra-ui/react";
+import { RiDoorOpenLine, RiMailStarLine, RiGithubFill } from "react-icons/ri";
 
 export default function Header() {
   const auth = useAuth();
@@ -27,18 +29,21 @@ export default function Header() {
       px={8}
       zIndex="9999"
     >
-      <Button onClick={() => handleRedirect()}>かろナビ！</Button>
-
+      <Heading
+        cursor="pointer"
+        size="md"
+        ml="auto"
+        onClick={() => handleRedirect()}
+      >
+        かろナビ！
+      </Heading>
       <Spacer />
-      
       <Spacer />
       <Flex w="50%"></Flex>
       <Spacer />
-      <Box>
-        <Button colorScheme="red" onClick={() => handleSignout()}>
-          サインアウト
-        </Button>
-      </Box>
+      <Link href="https://github.com/karasuneo">
+        <RiGithubFill cursor="pointer" size="2rem"></RiGithubFill>
+      </Link>
     </Flex>
   );
 }

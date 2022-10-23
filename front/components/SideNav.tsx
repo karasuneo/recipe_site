@@ -1,10 +1,13 @@
-import { Flex, Button, Text, ScrollProps } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { signOut } from "firebase/auth";
 import { useAuth } from "../hooks/firebase";
-import { BsNewspaper } from "react-icons/bs";
-import { RiSearch2Line, RiStarLine, RiCalculatorLine, RiDoorOpenLine } from "react-icons/ri";
-import { CgProfile } from "react-icons/cg";
+import {
+  RiSearch2Line,
+  RiStarLine,
+  RiCalculatorLine,
+  RiDoorOpenLine,
+} from "react-icons/ri";
 
 export default function SideNav() {
   const auth = useAuth();

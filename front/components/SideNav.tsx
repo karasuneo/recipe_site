@@ -1,7 +1,7 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { signOut } from "firebase/auth";
-import { useAuth } from "../hooks/firebase";
+import { useAuth } from "../hooks/firebase/firebase";
 import {
   RiSearch2Line,
   RiStarLine,

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Hits, Highlight } from "react-instantsearch-dom";
-import FavoriteButton from "../components/FavoriteButton";
+import FavoriteButton from "../../components/FavoriteButton";
 import "instantsearch.css/themes/algolia.css";
 import { Box } from "@chakra-ui/react";
 

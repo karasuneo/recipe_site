@@ -2,7 +2,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { useAuth } from "../hooks/firebase";
+import { useAuth } from "../hooks/firebase/firebase";
 import {
   Box,
   Button,

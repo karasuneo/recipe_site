@@ -1,11 +1,11 @@
 import { collection, getDocs, getFirestore } from 'firebase/firestore'
-// import '../utils/firebase/init' // Initialize FirebaseApp
+import 'firebase/app'
 
 export type User = {
   id: string
-  title: string
-  author: string
-  price: number
+  displayName: string
+  email: string
+  uid: string
 }
 
 export async function getUsers(): Promise<User[]> {

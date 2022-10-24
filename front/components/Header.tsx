@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
-import { useAuth } from "../hooks/firebase";
+import { useAuth } from "../hooks/firebase/firebase";
 import { Flex, Box, Button, Text, Spacer, Heading } from "@chakra-ui/react";
-import { RiDoorOpenLine, RiMailStarLine, RiGithubFill } from "react-icons/ri";
+import { RiGithubFill } from "react-icons/ri";
 
 export default function Header() {
   const auth = useAuth();
@@ -41,9 +41,9 @@ export default function Header() {
       <Spacer />
       <Flex w="50%"></Flex>
       <Spacer />
-      <Link href="https://github.com/karasuneo">
-        <RiGithubFill cursor="pointer" size="2rem"></RiGithubFill>
-      </Link>
+      <a href="https://github.com/karasuneo">
+        <RiGithubFill cursor="pointer" size="2rem" />
+      </a>
     </Flex>
   );
 }

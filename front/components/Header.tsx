@@ -41,9 +41,9 @@ export default function Header() {
       <Spacer />
       <Flex w="50%"></Flex>
       <Spacer />
-      <Link href="https://github.com/karasuneo">
-        <RiGithubFill cursor="pointer" size="2rem"></RiGithubFill>
-      </Link>
+      <a href="https://github.com/karasuneo">
+        <RiGithubFill cursor="pointer" size="2rem" />
+      </a>
     </Flex>
   );
 }

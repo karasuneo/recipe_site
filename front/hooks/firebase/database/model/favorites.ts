@@ -1,5 +1,5 @@
 import { collection, getDocs, getFirestore } from 'firebase/firestore'
-// import '../utils/firebase/init' // Initialize FirebaseApp
+import "firebase/app";
 
 export type Favorite = {
   id: string
@@ -10,7 +10,7 @@ export type Favorite = {
 export async function getFavorites(): Promise<Favorite[]> {
   const favorites = new Array<Favorite>()
   const db = getFirestore()
-  const favoritesSnapshot = await getDocs(collection(db, '/favorites'))
+  const favoritesSnapshot = await getDocs(collection(db, 'users/uECDJ55M3qveCETcghgI/favorites'))
 
   favoritesSnapshot.forEach((doc) => {
     const favorite = doc.data() as Favorite

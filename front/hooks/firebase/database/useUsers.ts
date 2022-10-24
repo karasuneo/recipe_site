@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { User, getUsers } from './firebase/database/users'
+import { User, getUsers } from './model/users'
 
 export type UseUsersOutput = {
   isLoading: boolean

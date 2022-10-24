@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useUsers } from '../hooks/useUsers'
+import { useUsers } from '../hooks/firebase/database/useUsers'
 
 export const UserTable: FC = () => {
   const { isLoading, users } = useUsers()

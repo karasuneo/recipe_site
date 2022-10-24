@@ -8,7 +8,7 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 import type { User } from "firebase/auth";
 import { useRouter } from "next/router";
-import { useAuth } from "../firebase";
+import { useAuth } from "../firebase/firebase";
 
 export type UserType = User | null;
 

@@ -2,6 +2,7 @@ import Header from "../../components/Header";
 import SideNav from "../../components/SideNav";
 import "instantsearch.css/themes/algolia.css";
 import { Box, Flex, Spacer, Center, Divider } from "@chakra-ui/react";
+import { FavoriteTable } from "../../components/FavoriteTable";
 
 export default function Favorite() {
   return (
@@ -12,7 +13,9 @@ export default function Favorite() {
         <Divider orientation="vertical" />
       </Center>
       <Spacer />
-      <Box w="80%" mt={"4.5rem"} mx="auto"></Box>
+      <Box w="80%" mt={"4.5rem"} mx="auto">
+        <FavoriteTable />
+      </Box>
     </Flex>
   );
 }

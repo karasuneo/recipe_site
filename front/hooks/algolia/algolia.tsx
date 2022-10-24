@@ -6,7 +6,6 @@ import { Box } from "@chakra-ui/react";
 
 const Hit = ({ hit }: any) => {
   return (
-    
     <Link href={hit.categoryUrl}>
       <Box
         w="50%"
@@ -16,17 +15,15 @@ const Hit = ({ hit }: any) => {
           opacity: "0.5",
         }}
       >
-        
         {hit.categoryName}
         <Box className="hitName">
-        
           <Highlight attribute="title" tagName="span" hit={hit} />
         </Box>
       </Box>
     </Link>
-      );
+  );
 };
 
 export default function SearchResult() {
-  return (<Hits hitComponent={Hit} />);
-};
+  return <Hits hitComponent={Hit} />;
+}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { User, getUsers } from './model/users'
+import { User, getUsers, addUser } from './model/users'
 
 export type UseUsersOutput = {
   isLoading: boolean

@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAuth } from "../hooks/firebase/firebase";
+import { addUser, User } from "../hooks/firebase/database/model/users";
+import { Favorite } from "../hooks/firebase/database/model/favorites";
 import {
   Box,
   Button,
@@ -15,6 +17,7 @@ import {
 import Link from "next/link";
 
 type Inputs = {
+  name: string;
   email: string;
   password: string;
 };
@@ -29,19 +32,31 @@ export default function Signup() {
   const auth = useAuth();
   const [isProcessingSignin, setIsProcessingSignin] = useState(false);
   const router = useRouter();
-  const signin = async (email: string, password: string) => {
+  const signin = async (name: string, email: string, password: string) => {
     try {
       setIsProcessingSignin(true);
       await signInWithEmailAndPassword(auth, email, password);
       setIsProcessingSignin(false);
-      router.push("/" + email + "/home");
+
+      const uid = auth.currentUser.uid
+      const user: User = {
+        id: uid,
+        displayName: name,
+        email: email,
+        uid: auth.currentUser.uid,
+        favorite: null,
+      };
+
+      addUser(user);
+
+      router.push("/" + uid + "/home");
     } catch (e) {
       console.error(e);
       setIsProcessingSignin(false);
     }
   };
-  const onSubmit: SubmitHandler<Inputs> = ({ email, password }) => {
-    signin(email, password);
+  const onSubmit: SubmitHandler<Inputs> = ({ name, email, password }) => {
+    signin(name, email, password);
   };
 
   return (
@@ -69,6 +84,19 @@ export default function Signup() {
         >
           <Box w="100%">
             <form onSubmit={handleSubmit(onSubmit)}>
+              <FormLabel fontWeight="bold">名前</FormLabel>
+              {errors.email && (
+                <Text color="red.400" mb="8px">
+                  名前は必須です
+                </Text>
+              )}
+              <Input
+                type="name"
+                size="lg"
+                mb="8"
+                placeholder="山田　太郎"
+                {...register("name", { required: true })}
+              />
               <FormLabel fontWeight="bold">Eメール</FormLabel>
               {errors.email && (
                 <Text color="red.400" mb="8px">

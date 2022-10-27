@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { addUser, User } from "../hooks/firebase/database/model/users";
 import { useAuth } from "../hooks/firebase/firebase";
 import {
   Box,
@@ -15,6 +16,7 @@ import {
 import Link from "next/link";
 
 type Inputs = {
+  name: string;
   email: string;
   password: string;
   confirmationPassword: string;
@@ -30,24 +32,35 @@ export default function Signup() {
   const auth = useAuth();
   const [isProcessingSignup, setIsProcessingSignup] = useState(false);
   const router = useRouter();
-  const signup = async (email: string, password: string) => {
+  const signup = async (name: string, email: string, password: string) => {
     try {
       setIsProcessingSignup(true);
       await createUserWithEmailAndPassword(auth, email, password);
       setIsProcessingSignup(false);
-      router.push("/" + email + "/home");
+      const uid = auth.currentUser.uid
+      const user: User = {
+        id: uid,
+        displayName: name,
+        email: email,
+        uid: auth.currentUser.uid,
+        favorite: null,
+      };
+
+      addUser(user);
+      router.push("/" + uid + "/home");
     } catch (e) {
       console.error(e);
       setIsProcessingSignup(false);
     }
   };
   const onSubmit: SubmitHandler<Inputs> = ({
+    name,
     email,
     password,
     confirmationPassword,
   }) => {
     if (password === confirmationPassword) {
-      signup(email, password);
+      signup(name, email, password);
     } else {
       alert("パスワードが一致しません");
     }
@@ -62,7 +75,7 @@ export default function Signup() {
         flexDirection="column"
         justifyContent="center"
       >
-        <Heading color="gray.800" mb="48px" textAlign="center" size="xl">
+        <Heading color="gray.800" mt="64px" textAlign="center" size="xl">
           Sign Up
         </Heading>
         <Box
@@ -76,8 +89,22 @@ export default function Signup() {
           m="0 auto"
           display="flex"
         >
+          
           <Box w="100%">
             <form onSubmit={handleSubmit(onSubmit)}>
+            <FormLabel fontWeight="bold">名前</FormLabel>
+              {errors.email && (
+                <Text color="red.400" mb="8px">
+                  名前は必須です
+                </Text>
+              )}
+              <Input
+                type="name"
+                size="lg"
+                mb="8"
+                placeholder="山田　太郎"
+                {...register("name", { required: true })}
+              />
               <FormLabel fontWeight="bold">Eメール</FormLabel>
               {errors.email && (
                 <Text color="red.400" mb="8px">

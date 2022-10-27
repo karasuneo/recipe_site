@@ -15,6 +15,7 @@ export default function Search(): JSX.Element {
       <InstantSearch indexName={indexName} searchClient={searchClient}>
         <Configure hitsPerPage={60} />
         <SearchBox translations={{ placeholder: "食材、または料理名を入力" }} />
+        
         <SearchResult />
       </InstantSearch>
     </>

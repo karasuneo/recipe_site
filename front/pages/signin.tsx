@@ -15,6 +15,7 @@ import {
 import Link from "next/link";
 
 type Inputs = {
+  name: string;
   email: string;
   password: string;
 };
@@ -29,19 +30,21 @@ export default function Signup() {
   const auth = useAuth();
   const [isProcessingSignin, setIsProcessingSignin] = useState(false);
   const router = useRouter();
-  const signin = async (email: string, password: string) => {
+  const signin = async (name: string, email: string, password: string) => {
     try {
       setIsProcessingSignin(true);
       await signInWithEmailAndPassword(auth, email, password);
       setIsProcessingSignin(false);
-      router.push("/" + email + "/home");
+
+      const uid = auth.currentUser.uid;
+      router.push("/" + uid + "/home");
     } catch (e) {
       console.error(e);
       setIsProcessingSignin(false);
     }
   };
-  const onSubmit: SubmitHandler<Inputs> = ({ email, password }) => {
-    signin(email, password);
+  const onSubmit: SubmitHandler<Inputs> = ({ name, email, password }) => {
+    signin(name, email, password);
   };
 
   return (
@@ -95,7 +98,6 @@ export default function Signup() {
                 placeholder="password"
                 {...register("password", { required: true })}
               />
-
               <Flex flexDirection="column">
                 <Text mb="8" textAlign="center">
                   アカウントをお持ちでない方は

@@ -2,25 +2,62 @@ import Link from "next/link";
 import { Hits, Highlight } from "react-instantsearch-dom";
 import FavoriteButton from "../../components/FavoriteButton";
 import "instantsearch.css/themes/algolia.css";
-import { Box } from "@chakra-ui/react";
+import { Box, IconButton, useToast } from "@chakra-ui/react";
+import { addFavorite, Favorite } from "../firebase/database/model/favorites";
+import { StarIcon } from "@chakra-ui/icons";
+import { getAuth } from "firebase/auth";
 
 const Hit = ({ hit }: any) => {
+  const auth = getAuth();
+
+  const toast = useToast();
+  const element: Favorite = {
+    id: hit.objectID,
+    categoryName: hit.categoryName,
+    categoryUrl: hit.categoryUrl,
+  };
+
+  const handleSignout = async () => {
+    console.log(element);
+  };
+
+  // console.log(hit);
   return (
-    <Link href={hit.categoryUrl}>
-      <Box
-        w="50%"
-        h="100%"
-        mx="auto"
-        _hover={{
-          opacity: "0.5",
-        }}
-      >
-        {hit.categoryName}
-        <Box className="hitName">
-          <Highlight attribute="title" tagName="span" hit={hit} />
+    <Box>
+      <IconButton
+        variant="outline"
+        aria-label="favorite"
+        colorScheme="yellow"
+        icon={<StarIcon />}
+        onClick={() => addFavorite(String(auth.currentUser.uid), element)}
+        // onClick={() => handleSignout()}
+        // onClick={() =>
+        //   toast({
+        //     position: "bottom-left",
+        //     render: () => (
+        //       <Box color="white" p={3} bg="yellow.400">
+        //         お気に入り登録しました！
+        //       </Box>
+        //     ),
+        //   })
+        // }
+      ></IconButton>
+      <Link href={hit.categoryUrl}>
+        <Box
+          w="50%"
+          h="100%"
+          mx="auto"
+          _hover={{
+            opacity: "0.5",
+          }}
+        >
+          {hit.categoryName}
+          <Box className="hitName">
+            <Highlight attribute="title" tagName="span" hit={hit} />
+          </Box>
         </Box>
-      </Box>
-    </Link>
+      </Link>
+    </Box>
   );
 };
 

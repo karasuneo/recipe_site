@@ -6,10 +6,10 @@ export type Favorite = {
   categoryUrl: string
 }
 
-export async function getFavorites(): Promise<Favorite[]> {
+export async function getFavorites(userid: string): Promise<Favorite[]> {
   const favorites = new Array<Favorite>()
   const db = getFirestore()
-  const favoritesSnapshot = await getDocs(collection(db, 'users/' +  + '/favorites'))
+  const favoritesSnapshot = await getDocs(collection(db, 'users/' + userid + '/favorites'))
 
   favoritesSnapshot.forEach((doc) => {
     const favorite = doc.data() as Favorite
@@ -19,11 +19,11 @@ export async function getFavorites(): Promise<Favorite[]> {
   return favorites
 }
 
-export async function addFavorite(id: string, favorite: Favorite): Promise<void> {
+export async function addFavorite(userid: string, favorite: Favorite): Promise<void> {
   const db = getFirestore()
-  const docRef = doc(db, 'users/' + id + '/favorites')
+  const docRef = doc(db, 'users/' + userid + '/favorites', favorite.id)
   await setDoc(docRef,
-    { categoryName: favorite.categoryName, categoryUrl: favorite.categoryUrl },
+    {categoryName: favorite.categoryName, categoryUrl: favorite.categoryUrl},
     { merge: true /* ドキュメントが存在する場合はフィールドを追記 */ }
   )
 }

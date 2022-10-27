@@ -2,9 +2,11 @@ import { FC } from "react";
 import Link from "next/link";
 import { useFavorites } from "../hooks/firebase/database/useFavorites";
 import { Flex, Box, Button, Text, Spacer, Heading } from "@chakra-ui/react";
+import { getAuth } from "firebase/auth";
 
 export const FavoriteTable: FC = () => {
-  const { isLoading, favorites } = useFavorites();
+  const auth = getAuth();
+  const { isLoading, favorites } = useFavorites(auth.currentUser.uid);
   if (isLoading) return <p>Loading...</p>;
 
   return (

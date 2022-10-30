@@ -30,17 +30,6 @@ const Hit = ({ hit }: any) => {
         colorScheme="yellow"
         icon={<StarIcon />}
         onClick={() => addFavorite(String(auth.currentUser.uid), element)}
-        // onClick={() => handleSignout()}
-        // onClick={() =>
-        //   toast({
-        //     position: "bottom-left",
-        //     render: () => (
-        //       <Box color="white" p={3} bg="yellow.400">
-        //         お気に入り登録しました！
-        //       </Box>
-        //     ),
-        //   })
-        // }
       ></IconButton>
       <Link href={hit.categoryUrl}>
         <Box

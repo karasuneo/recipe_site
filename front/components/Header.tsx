@@ -1,19 +1,10 @@
 import React from "react";
-import Link from "next/link";
-import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
-import { useAuth } from "../hooks/firebase/firebase";
-import { Flex, Box, Button, Text, Spacer, Heading } from "@chakra-ui/react";
 import { RiGithubFill } from "react-icons/ri";
+import { Flex, Spacer, Heading } from "@chakra-ui/react";
 
 export default function Header() {
-  const auth = useAuth();
   const router = useRouter();
-
-  const handleSignout = async () => {
-    await signOut(auth);
-    await router.push("/signin");
-  };
   const handleRedirect = async () => {
     router.reload();
   };

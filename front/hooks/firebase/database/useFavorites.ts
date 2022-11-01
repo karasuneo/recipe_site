@@ -13,13 +13,12 @@ const DEFAULT_OUTPUT: UseFavoritesOutput = {
 
 export function useFavorites(userid: string): UseFavoritesOutput {
   const [output, setOutput] = useState(DEFAULT_OUTPUT);
-
   useEffect(() => {
     void (async () => {
       const favorites = await getFavorites(userid);
       setOutput({ isLoading: false, favorites });
     })();
-  }, []);
+  });
 
   return output;
 }

@@ -59,10 +59,8 @@ export default function SideNav() {
               }}
             >
               <RiSearch2Line color="pink" />
-
               <Text ml="3">Search Recipe</Text>
             </Flex>
-
             <Flex
               onClick={() => handleFavorite()}
               cursor="pointer"

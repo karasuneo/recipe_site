@@ -24,6 +24,6 @@ export async function addFavorite(userid: string, favorite: Favorite): Promise<v
   const docRef = doc(db, 'users/' + userid + '/favorites', favorite.id)
   await setDoc(docRef,
     {categoryName: favorite.categoryName, categoryUrl: favorite.categoryUrl},
-    { merge: true /* ドキュメントが存在する場合はフィールドを追記 */ }
+    { merge: true }
   )
 }

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Link from "next/link";
 import { useFavorites } from "../hooks/firebase/database/useFavorites";
-import { Flex, Box, Button, Text, Spacer, Heading } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { getAuth } from "firebase/auth";
 
 export const FavoriteTable: FC = () => {

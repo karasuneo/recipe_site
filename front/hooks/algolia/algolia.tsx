@@ -17,11 +17,6 @@ const Hit = ({ hit }: any) => {
     categoryUrl: hit.categoryUrl,
   };
 
-  const handleSignout = async () => {
-    console.log(element);
-  };
-
-  // console.log(hit);
   return (
     <Box>
       <IconButton

@@ -28,6 +28,6 @@ export async function addUser(user: User): Promise<void> {
   const docRef = doc(db, '/users', user.id)
   await setDoc(docRef,
     { displayName: user.displayName, email: user.email, uid: user.uid },
-    { merge: true /* ドキュメントが存在する場合はフィールドを追記 */ }
+    { merge: true }
   )
 }
